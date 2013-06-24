@@ -17,5 +17,31 @@ var onReady = function onReadyF() {
 
 var init = function initF() {
     // Initialize App
-    alert(1);
+    window.NWBuild = {};
+    $(function () {
+        NWBuild.app = new DevExpress.framework.html.HtmlApplication(
+            { namespace: NWBuild }
+        );
+        NWBuild.app.router.register(":view/:name", { view: "home", name: '' });
+        NWBuild.app.navigate();
+    });
+    NWBuild.home = function () {
+        var viewModel = {
+            message: ko.observable('Welcome!'),
+            name: ko.observable(''),
+            sayHello: function () {
+                this.message("Hello " + this.name() + '!');
+            },
+            greet: function () {
+                NWBuild.app.navigate("greeting/" + this.name());
+            }
+        };
+        return viewModel;
+    };
+    NWBuild.greeting = function (params) {
+        var viewModel = {
+            message: ko.observable('Hello ' + params.name + '!'),
+        };
+        return viewModel;
+    };
 };
