@@ -4,34 +4,25 @@
         <meta charset="utf-8">
         <title>Neverwinter Character Builder</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="Content/dx.common.css" />
-        <link rel="stylesheet" type="text/css" href="Content/dx.ios.default.css" />
-        <link rel="stylesheet" type="text/css" href="Content/dx.android.holo-dark.css" />
         <link rel="stylesheet" type="text/css" href="Content/dx.desktop.default.css" />
+        <link rel="stylesheet" type="text/css" href="Content/dx.android.holo-dark.css" />
+        <link rel="stylesheet" type="text/css" href="Content/dx.ios.default.css" />
         <link rel="stylesheet" type="text/css" href="Content/dx.win8.black.small.css" />
         <link rel="Stylesheet" type="text/css" href="Content/site.css" />
-        <style type="text/css">
-        </style>
+        <!-- Layouts -->
+        <link rel="stylesheet" type="text/css" href="Content/Layouts/EmptyLayout.css" />
+        <link rel="dx-template" type="text/html" href="Content/Layouts/EmptyLayout.html"/>
+        <!-- Views -->
+        <link rel="dx-template" type="text/html" href="Content/Views/home/home.html"/>
+
+        <!-- Javascript -->
         <script type="text/javascript" src="Scripts/HeadJS/head.min.js"></script>
         <script type="text/javascript" src="Scripts/index.js"></script>
     </head>
     <body>
-        <div data-options="dxLayout : { name: 'default' } ">
-            <div data-options="dxContentPlaceholder : { name: 'content', transition: 'slide' } "></div>
-        </div>
-        <div data-options="dxView: {name: 'home'}">
-            <div data-options="dxContent : { targetPlaceholder: 'content' } ">
-                <h1 data-bind="text: message"></h1>
-                Enter your name: <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
-                <div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
-                <div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
-            </div>
-        </div>
-        <div data-options="dxView : { name: 'greeting', layout: 'default' } ">
-            <div data-options="dxContent : { targetPlaceholder: 'content' } ">
-                <h1 data-bind="text: message"></h1>
-                <div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
-            </div>
-        </div>
+        <div class="dx-viewport"></div>
     </body>
 </html>
