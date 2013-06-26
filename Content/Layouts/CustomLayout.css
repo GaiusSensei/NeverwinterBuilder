@@ -1,0 +1,15 @@
+﻿.custom-layout {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+    .custom-layout > div.content,
+    .custom-layout > div.content > div {
+        width: 100%;
+        height: 100%;
+    }
+
+.custom-layout .load-panel.dx-loadpanel-content {
+    background: transparent;
+    border: none;
+}

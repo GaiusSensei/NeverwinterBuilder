@@ -12,13 +12,14 @@ head.js(
     { gl: "Scripts/Globalize/globalize.min.js" },
     { dx: "Scripts/PhoneJS/dx.phonejs.js" },
     "Content/Layouts/EmptyLayout.js",
+    "Content/Layouts/CustomLayout.js",
     "Content/Views/home/home.js",
     function readyF() {
         // Initialize App
         $(function () {
             NWBuild.app = new DevExpress.framework.html.HtmlApplication({   
                 namespace: NWBuild,
-                defaultLayout: "empty" 
+                defaultLayout: "custom" 
             });
             NWBuild.app.router.register(":view", { view: "home" });
             NWBuild.app.navigate();
