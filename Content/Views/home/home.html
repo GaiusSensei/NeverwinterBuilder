@@ -1,3 +1,21 @@
 <div data-options="dxView : { name: 'home' }">
-    <div class="container-fluid" data-options="dxContent : { targetPlaceholder: 'content' }">        <br />        <div class="offset2 span8">            <h1>Hello, World!</h1>        </div>    </div>
+    <div class="container" data-options="dxContent : { targetPlaceholder: 'content' }">
+        <br />            <div class="offset2 span8">            <h1 style="padding-bottom: 10px;">Greetings, Adventurer!</h1>
+            <div class="row-fluid">
+                <div class="span6 pads" 
+                    data-bind="dxTextBox: { 
+                        placeholder: phCharName,
+                        value: txName,
+                        mode: 'text' }"></div>                       
+                <div class="span4 pads" 
+                    data-bind="dxTextBox: { 
+                        placeholder: phClass,
+                        value: txClass,
+                        mode: 'text', 
+                        readOnly: true,
+                        clickAction: asClassesShow }"></div>
+            </div>        </div>        
+        <div data-bind="dxActionSheet: { 
+                dataSource: asClassesData, 
+                visible: asClassesVisible }"></div>    </div>
 </div>

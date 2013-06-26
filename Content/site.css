@@ -2,3 +2,10 @@ body
 {
     font-family: 'Segoe UI';
 }
+
+.pads
+{
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
