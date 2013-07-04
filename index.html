@@ -5,40 +5,150 @@
         <meta charset="utf-8">
         <title>Neverwinter Character Builder</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-        <link rel="Stylesheet" type="text/css" href="Content/fries-1.0.0.css" />
+        <link rel="Stylesheet" type="text/css" href="Content/bootstrap.min.css" />
         <link rel="Stylesheet" type="text/css" href="Content/site.css" />
-        <style type="text/css">
-        </style>
+        <script type="text/javascript" src="Scripts/HeadJs/head.min.js"></script>
     </head>
     
     <body>
-        <div class="page">
-            <!-- Header -->
-            <header class="action-bar fixed-top">
-                <a href="#" class="app-icon action">
-                    <i class="icon-add-group"></i>
-                </a>                
-                <h1 class="title">&nbsp;NW.Buildr</h1>   
-                <ul class="actions pull-right">
-                    <li><a href="#" class="action" title="Save Current"><i class="icon-save"></i></a></li>
-                    <li><a href="#" class="action" title="Load Previous"><i class="icon-folder"></i></a></li>
-                    <li><a href="#" class="action" title="New Character"><i class="icon-new"></i></a></li>
-                    <li><a href="#" class="action" title="Settings"><i class="icon-settings"></i></a></li>
-                    <li><a href="#" class="action" title="About"><i class="icon-information"></i></a></li>
-                </ul>           
-            </header>
-            <!-- Body -->
-            <div class="content">
-            
-                <!-- Add anything here -->
-            
+    <div class="container-fluid">        
+        <header>
+            <div class="row-fluid">
+                <div class="offset3 span6 text-center">
+                    <h3 style="display:inline;color: #8A0707;">Neverwinter</h3>&nbsp;
+                    <h4 style="display:inline;">Character Builder</h4>
+                </div>
             </div>
-        </div>                
-        <!-- Scripts -->
-        <script src="phonegap.js"></script>
-        <script type="text/javascript" src="Scripts/jQuery/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="Scripts/jQuery/jquery.total-storage.min.js"></script>
-        <script type="text/javascript" src="Scripts/fries/fries-1.0.0.min.js"></script>
-        <script type="text/javascript" src="Scripts/index.js"></script>
+            <div class="row-fluid">
+                <div class="offset3 span3">
+                    <div class="input-append">
+                      <input class="input-block-level" type="text" placeholder="Character Name"/>
+                      <div class="btn-group">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Action
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Save Character</a></li>
+                            <li><a href="#">Load Character</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Clear Current Set</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <select class="input-block-level">
+                        <option value="CW_SM">Control Wizard: Spellstorm Mage</option>
+                        <option value="DC_DO">Devoted Cleric: Divine Oracle</option>
+                        <option value="GF_IV">Guardian Fighter: Iron Vanguard</option>
+                        <option value="GWF_S">Great Weapon Fighter: Swordmaster</option>
+                        <option value="TR_I">Trickster Rogue: Infiltrator</option>
+                    </select>
+                </div>
+            </div>  
+        </header>
+        <section>
+            <div class="row-fluid">
+                <div class="offset3 span2">
+                    <div class="row-fluid">
+                        <h4>Ability Scores</h4>
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">STR</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">DEX</span>
+                        <input class="input-mini text-center" id="txtDex" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">CON</span>
+                        <input class="input-mini text-center" id="txtCon" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">INT</span>
+                        <input class="input-mini text-center" id="txtInt" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">WIS</span>
+                        <input class="input-mini text-center" id="txtWis" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">CHA</span>
+                        <input class="input-mini text-center" id="txtCha" style="width:35px;" 
+                            type="number" min="10" max="30" value="20">
+                    </div>                                       
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:30px;">AC</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:35px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="row-fluid">
+                        <h4>Ratings</h4>
+                    </div>                    
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Power</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Critical Strike</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>                    
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Armor Penetration</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Recovery</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>                    
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Defense</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Deflect</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>                    
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Regeneration</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Life Steal</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div> 
+                    <div class="input-prepend">
+                        <span class="add-on" style="width:120px;">Movement</span>
+                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                            type="text" value="0" disabled="disabled"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            
+        </section>
+    </div>
+        
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="Scripts/index.js"></script>
     </body>
 </html>
