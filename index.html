@@ -14,15 +14,15 @@
     <div class="container-fluid">        
         <header>
             <div class="row-fluid">
-                <div class="offset3 span6 text-center">
+                <div class="offset1 span10 text-center">
                     <h3 style="display:inline;color: #8A0707;">Neverwinter</h3>&nbsp;
                     <h4 style="display:inline;">Character Builder</h4>
                 </div>
             </div>
             <div class="row-fluid">
-                <div class="offset3 span3">
-                    <div class="input-append">
-                      <input class="input-block-level" type="text" placeholder="Character Name"/>
+                <div class="offset2 span3">
+                    <div class="input-append pull-right">
+                      <input class="input-medium" type="text" placeholder="Character Name"/>
                       <div class="btn-group">
                         <button class="btn dropdown-toggle" data-toggle="dropdown">
                             Action
@@ -37,7 +37,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="span3">
+                <div class="span4">
                     <select class="input-block-level">
                         <option value="CW_SM">Control Wizard: Spellstorm Mage</option>
                         <option value="DC_DO">Devoted Cleric: Divine Oracle</option>
@@ -50,104 +50,229 @@
         </header>
         <section>
             <div class="row-fluid">
-                <div class="offset3 span2">
+                <div class="offset1 span3">
                     <div class="row-fluid">
                         <h4>Ability Scores</h4>
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">STR</span>
                         <input class="input-mini text-center" id="txtStr" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">DEX</span>
                         <input class="input-mini text-center" id="txtDex" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">CON</span>
                         <input class="input-mini text-center" id="txtCon" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">INT</span>
                         <input class="input-mini text-center" id="txtInt" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">WIS</span>
                         <input class="input-mini text-center" id="txtWis" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:30px;">CHA</span>
                         <input class="input-mini text-center" id="txtCha" style="width:35px;" 
                             type="number" min="10" max="30" value="20">
-                    </div>                                       
-                    <div class="input-prepend">
-                        <span class="add-on" style="width:30px;">AC</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:35px;" 
+                    </div>
+                    <div class="row-fluid">
+                        <h4>Combat Statistics</h4>
+                    </div>               
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Armor Class</span>
+                        <input class="input-mini text-center" id="txtAC" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">+Damage</span>
+                        <input class="input-mini text-center" id="txtDam" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Power'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Critical%</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Critical Strike'"/>
+                    </div>                    
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Armor Penetration</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Armor Penetration'"/>
+                    </div>                    
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Cooldown Divisor</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Recovery'"/>
+                    </div>                    
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Action Gain +%</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Recovery'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">% Dmg. Mitigated</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Defense'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Deflect %</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Deflect'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">%Hp regen/3secs.</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Regeneration'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">%Hp healed/dmg.</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Life Steal'"/>
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
+                        <span class="add-on" style="width:110px;">Run Speed%</span>
+                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                            type="text" value="0" disabled="disabled" title="derived from 'Movement'"/>
+                    </div>
                 </div>
-                <div class="span4">
+                <div class="span7">
                     <div class="row-fluid">
                         <h4>Ratings</h4>
-                    </div>                    
-                    <div class="input-prepend">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Power</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Critical Strike</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
-                    </div>                    
-                    <div class="input-prepend">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Armor Penetration</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Recovery</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
-                    </div>                    
-                    <div class="input-prepend">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Defense</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Deflect</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
-                    </div>                    
-                    <div class="input-prepend">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Regeneration</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
-                    <div class="input-prepend">
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Life Steal</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
-                    </div> 
-                    <div class="input-prepend">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Movement</span>
                         <input class="input-mini text-center" id="txtStr" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
+                    <div class="row-fluid">
+                        <h4>Equipment</h4>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Helm</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Chest</h5>
+                            
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Arms</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Boots</h5>
+                            
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Main Hand</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Off Hand</h5>
+                            
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Neck</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Waist</h5>
+                            
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Ring 1</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Ring 2</h5>
+                            
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Shirt</h5>
+                            
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px;">Trousers</h5>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section>
-            
-        </section>
+        <footer>
+            <div class="row-fluid">
+                <br />
+                <p class="offset2 span8 text-center" style="font-size:10px;">
+                    Found a <span style="color:#fc2929;">Bug</span>? an <span style="color:#84b6eb;"> 
+                    Enhancement</span> idea? or a <span style="color:#cc317c;">Question</span>?
+                    <a href="https://github.com/GaiusSensei/NeverwinterBuilder/issues">File an issue</a>! • 
+                    Note: The Statistics above assume that the character is already at level 60.
+                </p>
+            </div>
+        </footer>
     </div>
-        
-
+    
+    <!-- Issue Tracker -->
+    <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:Segoe UI, sans-serif;text-align:center;font-weight:bold;padding:0px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#600;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/GaiusSensei/NeverwinterBuilder/issues">Issues? File it at Github!</a></span>
     <!-- Scripts -->
     <script type="text/javascript" src="Scripts/index.js"></script>
     </body>
