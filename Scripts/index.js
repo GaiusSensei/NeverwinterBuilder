@@ -25,8 +25,14 @@ var clearSet = function clearSetF(){
     // Clear Set
 };
 
-var invalidate = function invalidateF(){
+var invalidate = function invalidateF() {
     // Reload UI
+    $("#txtStr").val(nwbuild.current.abilities.str);
+    $("#txtDex").val(nwbuild.current.abilities.dex);
+    $("#txtCon").val(nwbuild.current.abilities.con);
+    $("#txtInt").val(nwbuild.current.abilities.int);
+    $("#txtWis").val(nwbuild.current.abilities.wis);
+    $("#txtCha").val(nwbuild.current.abilities.cha);
     $("#txtPower").val(nwbuild.current.ratings.power);
     $("#txtCritS").val(nwbuild.current.ratings.crits);
     $("#txtArPen").val(nwbuild.current.ratings.arpen);
@@ -38,6 +44,13 @@ var invalidate = function invalidateF(){
     $("#txtMovem").val(nwbuild.current.ratings.movem);
     $("#txtArC").val(nwbuild.current.stats.ArC);
     $("#txtDam").val(nwbuild.current.stats.Dam);
-    $("#txtCrt").val((parseFloat(nwbuild.current.stats.Crt)*100).toFixed(2) + '%');
+    $("#txtCrt").val((parseFloat(nwbuild.current.stats.Crt) * 100).toFixed(2) + '%');
     $("#txtArP").val((parseFloat(nwbuild.current.stats.ArP)).toFixed(2) + '%');
+    $("#txtCDD").val((parseFloat(nwbuild.current.stats.CDD) * 100).toFixed(2) + '%');
+    $("#txtAPG").val((parseFloat(nwbuild.current.stats.APG) * 100).toFixed(2) + '%');
+    $("#txtDmM").val((parseFloat(nwbuild.current.stats.DmM) * 100).toFixed(2) + '%');
+    $("#txtDfl").val((parseFloat(nwbuild.current.stats.Dfl) * 100).toFixed(2) + '%');
+    $("#txtHpS").val((parseFloat(nwbuild.current.stats.HpS) * 100).toFixed(2) + '%');
+    $("#txtHpD").val((parseFloat(nwbuild.current.stats.HpD) * 100).toFixed(2) + '%');
+    $("#txtRun").val((parseFloat(nwbuild.current.stats.Run) * 100).toFixed(2) + '%');
 };
