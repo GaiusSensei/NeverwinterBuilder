@@ -22,7 +22,7 @@
             <div class="row-fluid">
                 <div class="offset2 span3">
                     <div class="input-append pull-right">
-                      <input class="input-medium" type="text" placeholder="Character Name"/>
+                      <input class="input-medium" id="txtName" type="text" placeholder="Character Name"/>
                       <div class="btn-group">
                         <button class="btn dropdown-toggle" data-toggle="dropdown">
                             Action
@@ -33,12 +33,13 @@
                             <li><a href="#">Load Character</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Clear Current Set</a></li>
+                            <li><a href="#">Share Current Set</a></li>
                         </ul>
                       </div>
                     </div>
                 </div>
                 <div class="span4">
-                    <select class="input-block-level">
+                    <select class="input-block-level" id="selClass">
                         <option value="CW_SM">Control Wizard: Spellstorm Mage</option>
                         <option value="DC_DO">Devoted Cleric: Divine Oracle</option>
                         <option value="GF_IV">Guardian Fighter: Iron Vanguard</option>
@@ -104,42 +105,42 @@
                     </div>                    
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">Armor Penetration</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtArP" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Armor Penetration'"/>
                     </div>                    
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">Cooldown Divisor</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtCDD" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Recovery'"/>
                     </div>                    
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">Action Gain +%</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtAcG" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Recovery'"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">% Dmg. Mitigated</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtDmM" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Defense'"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">Deflect %</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtDfl" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Deflect'"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">%Hp regen/3secs.</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtHpS" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Regeneration'"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">%Hp healed/dmg.</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtHpD" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Life Steal'"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:110px;">Run Speed%</span>
-                        <input class="input-mini text-center" id="txtCrt" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtRun" style="width:60px;" 
                             type="text" value="0" disabled="disabled" title="derived from 'Movement'"/>
                     </div>
                 </div>
@@ -149,47 +150,47 @@
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Power</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtPower" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Critical Strike</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtCritS" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Armor Penetration</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtArPen" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Recovery</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtRecov" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Defense</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtDfnse" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Deflect</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtDflct" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Regeneration</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtRegen" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Life Steal</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtLfStl" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="input-prepend" style="margin-bottom:5px;">
                         <span class="add-on" style="width:120px;">Movement</span>
-                        <input class="input-mini text-center" id="txtStr" style="width:60px;" 
+                        <input class="input-mini text-center" id="txtMovem" style="width:60px;" 
                             type="text" value="0" disabled="disabled"/>
                     </div>
                     <div class="row-fluid">
@@ -197,62 +198,136 @@
                     </div>
                     <div class="row-fluid">
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Helm</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Helm: </h5>
+                            <span class="eqVeryRare" id="txtHelm">Test Helm</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtHelmDesc">Set: Test Armor, Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
                         </div>
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Chest</h5>
-                            
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span5 equipment">
-                            <h5 style="margin:0px;">Arms</h5>
-                            
-                        </div>
-                        <div class="span5 equipment">
-                            <h5 style="margin:0px;">Boots</h5>
-                            
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span5 equipment">
-                            <h5 style="margin:0px;">Main Hand</h5>
-                            
-                        </div>
-                        <div class="span5 equipment">
-                            <h5 style="margin:0px;">Off Hand</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Chest: </h5>
+                            <span class="eqVeryRare" id="txtChest">Test Chest</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtChestDesc">Set: Test Armor, Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Neck</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Arms: </h5>
+                            <span class="eqVeryRare" id="txtArms">Test Arms</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtArmsDesc">Set: Test Armor, Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
                         </div>
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Waist</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Boots: </h5>
+                            <span class="eqVeryRare" id="txtBoots">Test Boots</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtBootsDesc">Set: Test Armor, Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100, URadi:7
+                            </p>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Ring 1</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Main Hand: </h5>
+                            <span class="eqVeryRare" id="txtMain">Test Main Hand</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtMainDesc">Set: Test Weapon, 
+                                MinDm:100, MaxDm:100, Power+100, CritS+100, 
+                                Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
                         </div>
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Ring 2</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Off Hand: </h5>
+                            <span class="eqVeryRare" id="txtHelm">Test Off Hand</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtHelmDesc">Set: Test Weapon,
+                                MinDm:100, MaxDm:100, Power+100, CritS+100, 
+                                Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100, ArCls+10
+                            </p>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Shirt</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Neck: </h5>
+                            <span class="eqRare" id="txtNeck">Test Neck</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtNeckDesc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100, ODark:7
+                            </p>
                         </div>
                         <div class="span5 equipment">
-                            <h5 style="margin:0px;">Trousers</h5>
-                            
+                            <h5 style="margin:0px; display:inline;">Waist: </h5>
+                            <span class="eqRare" id="txtWaist">Test Waist</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtWaistDesc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100, DAzur:7
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px; display:inline;">Ring1: </h5>
+                            <span class="eqRare" id="txtRing1">Test Ring</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtRing1Desc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px; display:inline;">Ring2: </h5>
+                            <span class="eqRare" id="txtRing2">Test Ring</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtRing2Desc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px; display:inline;">Shirt: </h5>
+                            <span class="eqUncommon" id="txtShirt">Test Shirt</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtShirtDesc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
+                        </div>
+                        <div class="span5 equipment">
+                            <h5 style="margin:0px; display:inline;">Trousers: </h5>
+                            <span class="eqCommon" id="txtTrousers">Test Trousers</span>
+                            <a href="#" class="pull-right">Change</a>
+                            <hr style="padding:0px;margin:0px;"/>
+                            <p class="equipmentDesc" id="txtTrousersDesc">Power+100, 
+                                CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                                Regen+100, LfStl+100, Movem+100
+                            </p>
                         </div>
                     </div>
                 </div>
