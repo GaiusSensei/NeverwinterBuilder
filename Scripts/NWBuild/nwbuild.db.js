@@ -13,10 +13,11 @@ https://github.com/GaiusSensei/NeverwinterBuilder
     nwbuild.dbGet = function dbGetF(id) {
         var e = {
             id:"0",
-            name:"Test",
-            type:"",
-            desc:"Set: Test",
-            tags:["Set: Test", "OffenseSlot"],
+            name:"Debug Item",
+            type:"debug",
+            rarity:"vrare",
+            desc:"Set: Debug",
+            tags:["Set: Debug", "OffenseSlot"],
             ratings:{
                 power:0,
                 crits:0,

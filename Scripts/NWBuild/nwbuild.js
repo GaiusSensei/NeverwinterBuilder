@@ -8,6 +8,32 @@ https://github.com/GaiusSensei/NeverwinterBuilder
     nwbuild.ver = "1.0.0";
     nwbuild.current = {};
     // Public Methods
+    nwbuild.saveCurrent = function saveCurrentF() {
+        if (trim(nwbuild.current.name) === '') {
+            return "Character Name required.";
+        } else {
+            $.totalStorage("CharacterSet:" + 
+                trim(nwbuild.current.name).toLowerCase(), nwbuild.current);
+            return "Successfully saved.";
+        }
+    };
+    nwbuild.loadToCurrent = function loadToCurrentF(name) {
+        if (trim(name) === '') {
+            return "Character Name required.";
+        } else {
+            var validName = trim(name).toLowerCase(),
+                key = "CharacterSet:" + validName;
+            try {
+                var temp = $.totalStorage(key);
+                if (temp.name === validName)
+                    nwbuild.current = temp;
+                return "Character successfully loaded.";
+            } catch(e) {
+                return "Character not found.";
+            }
+            return "Character not found.";
+        }        
+    };
     nwbuild.clearCurrent = function clearCurrentF() {
         nwbuild.current = {
             name: "",
@@ -15,18 +41,18 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             abilities: {
                 str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10
             }, equipment: {
-                helm: { id: 0, text: "Test Helm", desc: "Set: Test" },
-                chest: { id: 0, text: "Test Chest", desc: "Set: Test" },
-                arms: { id: 0, text: "Test Arms", desc: "Set: Test" },
-                boots: { id: 0, text: "Test Boots", desc: "Set: Test" },
-                main: { id: 0, text: "Test Main Hand", desc: "Set: Test" },
-                off: { id: 0, text: "Test Off Hand", desc: "Set: Test" },
-                neck: { id: 0, text: "Test Neck", desc: "Set: Test" },
-                waist: { id: 0, text: "Test Waist", desc: "Set: Test" },
-                ring1: { id: 0, text: "Test Ring", desc: "Set: Test" },
-                ring2: { id: 0, text: "Test Ring", desc: "Set: Test" },
-                shirt: { id: 0, text: "Test Shirt", desc: "Set: Test" },
-                trousers: { id: 0, text: "Test Trousers", desc: "Set: Test" }
+                helm: { id: "0", text: "Test Helm", desc: "Set: Test" },
+                chest: { id: "0", text: "Test Chest", desc: "Set: Test" },
+                arms: { id: "0", text: "Test Arms", desc: "Set: Test" },
+                boots: { id: "0", text: "Test Boots", desc: "Set: Test" },
+                main: { id: "0", text: "Test Main Hand", desc: "Set: Test" },
+                off: { id: "0", text: "Test Off Hand", desc: "Set: Test" },
+                neck: { id: "0", text: "Test Neck", desc: "Set: Test" },
+                waist: { id: "0", text: "Test Waist", desc: "Set: Test" },
+                ring1: { id: "0", text: "Test Ring", desc: "Set: Test" },
+                ring2: { id: "0", text: "Test Ring", desc: "Set: Test" },
+                shirt: { id: "0", text: "Test Shirt", desc: "Set: Test" },
+                trousers: { id: "0", text: "Test Trousers", desc: "Set: Test" }
             }, ratings: {
                 power: 0,
                 crits: 0,
@@ -212,61 +238,61 @@ https://github.com/GaiusSensei/NeverwinterBuilder
 
         // Recalculate +Damage
         // Power*0.04        
-        nwbuild.current.stats.Dam = (parseFloat(nwbuild.current.ratings.power) * 0.04).toFixed(0);
+        nwbuild.current.stats.Dam = (filterFloat(nwbuild.current.ratings.power) * 0.04).toFixed(0);
         // Recalculate Critical%
         // 0.05+StatBonus+FeatBonus+0.288*CriticalStike^1.2/(LevelConstant+CriticalStrike^1.2)
         // where the level constant for level 60 is between 10185 and 10187
         nwbuild.current.stats.Crt = 0.05 + getStatBonus('Crt') + getFeatBonus() +
-            (0.288 * Math.pow(parseFloat(nwbuild.current.ratings.crits), 1.2) /
-            (10185 + Math.pow(parseFloat(nwbuild.current.ratings.crits), 1.2)));
+            (0.288 * Math.pow(filterFloat(nwbuild.current.ratings.crits), 1.2) /
+            (10185 + Math.pow(filterFloat(nwbuild.current.ratings.crits), 1.2)));
         // Recalculate Armor Pen
         // 35.72*ArmorPenetration^1.88/(LevelConstant+ArmorPenetration^1.88)*(1+FeatBonus)
         // where the level constant for level 60 is between 1225377 and 1225660
         nwbuild.current.stats.ArP =
-            (35.72 * Math.pow(parseFloat(nwbuild.current.ratings.arpen), 1.88)) /
-            (1225377 + Math.pow(parseFloat(nwbuild.current.ratings.arpen), 1.88));
+            (35.72 * Math.pow(filterFloat(nwbuild.current.ratings.arpen), 1.88)) /
+            (1225377 + Math.pow(filterFloat(nwbuild.current.ratings.arpen), 1.88));
         // Recalculate Cooldown Divisor
         // (1+StatBonus+FeatBonus+0.36*Recovery^1.5/(LevelConstant+Recovery^1.5))
         // where the level constant for level 60 is between 102309 and 102311
         nwbuild.current.stats.CDD = 1 + getStatBonus('RSp') + getFeatBonus() +
-            (0.36 * Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.5)) /
-            (102309 + Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.5));
+            (0.36 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5)) /
+            (102309 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5));
         // Recalculate Action Point Gain
         // (1+StatBonus+FeatBonus+0.36*Recovery^1.5/(LevelConstant+Recovery^1.5))
         // where the level constant for level 60 is between 102309 and 102311
         nwbuild.current.stats.APG = 1 + getStatBonus('APG') + getFeatBonus() +
-            (0.36 * Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.5)) /
-            (102309 + Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.5));
+            (0.36 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5)) /
+            (102309 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5));
         // Recalculate Damage Mitigated
         // (0.005*(ArmorClass-10)+0.4999*Defense/(LevelConstant+Defense)*(1+FeatBonus))+AbilityBonus
         // where the level constant for level 60 is 1643.6
         nwbuild.current.stats.DmM = 0.005 * (parseInt(nwbuild.current.stats.ArC, 10) - 10) +
-            (0.4999 * parseFloat(nwbuild.current.ratings.dfnse)) /
-            (1643.6 + parseFloat(nwbuild.current.ratings.dfnse)) * (1 + getFeatBonus()) + getStatBonus('Dfnse');
+            (0.4999 * filterFloat(nwbuild.current.ratings.dfnse)) /
+            (1643.6 + filterFloat(nwbuild.current.ratings.dfnse)) * (1 + getFeatBonus()) + getStatBonus('Dfnse');
         // Recalculate Deflect %
         // StatBonus+0.308*Deflect^1.4/(LevelConstant+Deflect^1.4)
         // where the level constant for level 60 is between 41957 and 41977
         nwbuild.current.stats.Dfl = getStatBonus('Dflct') +
-            (0.308 * Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.4)) /
-            (41957 + Math.pow(parseFloat(nwbuild.current.ratings.recov), 1.4));
+            (0.308 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.4)) /
+            (41957 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.4));
         // Recalculate Regen/3secs.
         // 0.2077*Regeneration^1.3/(LevelConstant+Regeneration^1.3)
         // where the level constant for level 60 is 12938
         nwbuild.current.stats.HpS = 
-            (0.2077 * Math.pow(parseFloat(nwbuild.current.ratings.regen), 1.3)) /
-            (12938 + Math.pow(parseFloat(nwbuild.current.ratings.regen), 1.3));
+            (0.2077 * Math.pow(filterFloat(nwbuild.current.ratings.regen), 1.3)) /
+            (12938 + Math.pow(filterFloat(nwbuild.current.ratings.regen), 1.3));
         // Recalculate Life Steal/Damage.
         // 0.205*LifeSteal^1.3/(LevelConstant+LifeSteal^1.3)
         // where the level constant for level 60 is between 12710 and 12713
         nwbuild.current.stats.HpD = 
-            (0.205 * Math.pow(parseFloat(nwbuild.current.ratings.lfstl), 1.3)) /
-            (12710 + Math.pow(parseFloat(nwbuild.current.ratings.lfstl), 1.3));
+            (0.205 * Math.pow(filterFloat(nwbuild.current.ratings.lfstl), 1.3)) /
+            (12710 + Math.pow(filterFloat(nwbuild.current.ratings.lfstl), 1.3));
         // Recalculate Run Speed %.
         // 1 + 0.31*Movement^1.4/(LevelConstant+Movement^1.4)
         // where the level constant for level 60 is between 42286 and 42340
         nwbuild.current.stats.Run = 1 +
-            (0.31 * Math.pow(parseFloat(nwbuild.current.ratings.movem), 1.4)) /
-            (42286 + Math.pow(parseFloat(nwbuild.current.ratings.movem), 1.4));
+            (0.31 * Math.pow(filterFloat(nwbuild.current.ratings.movem), 1.4)) /
+            (42286 + Math.pow(filterFloat(nwbuild.current.ratings.movem), 1.4));
         // Done
         callback();
     };
@@ -277,148 +303,153 @@ https://github.com/GaiusSensei/NeverwinterBuilder
     var getStatBonus = function getStatBonusF(stat) {
         if (nwbuild.current.classCode === 'CW_SM') {
             if (stat === 'Dam') {           // Damage
-                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.int) - 10) / 100;
             } else if (stat === 'Crt') {    // Critical%
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'CAD') {    // Combat Advantage Damage
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'HP') {     // Hit Points
-                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+                return ((filterFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
             } else if (stat === 'DTR') {    // DoT Resist
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'AER') {    // AoE Resist
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'Dflct') {  // Deflect Bonus
-                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+                return ((filterFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
             } else if (stat === 'CtB') {    // Control Bonus
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CtR') {    // Control Resist
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'SRg') {    // Stamina Regen
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
-                return (((parseFloat(nwbuild.current.abilities.int) - 10) / 100) +
-                        ((parseFloat(nwbuild.current.abilities.wis) - 10) / 100));
+                return (((filterFloat(nwbuild.current.abilities.int) - 10) / 100) +
+                        ((filterFloat(nwbuild.current.abilities.wis) - 10) / 100));
             } else if (stat === 'APG') {    // Action Point Gain
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
         } else if (nwbuild.current.classCode === 'DC_DO') {
             if (stat === 'Dam') {           // Damage
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'Hea') {    // Healing
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'Crt') {    // Critical%
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'CAD') {    // Combat Advantage Damage
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'HP') {     // Hit Points
-                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+                return ((filterFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
             } else if (stat === 'DTR') {    // DoT Resist
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'AER') {    // AoE Resist
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'Dflct') {  // Deflect Bonus
-                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+                return ((filterFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
             } else if (stat === 'CtB') {    // Control Bonus
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CtR') {    // Control Resist
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
-                return (((parseFloat(nwbuild.current.abilities.int) - 10) / 100) +
-                        ((parseFloat(nwbuild.current.abilities.cha) - 10) / 100));
+                return (((filterFloat(nwbuild.current.abilities.int) - 10) / 100) +
+                        ((filterFloat(nwbuild.current.abilities.cha) - 10) / 100));
             } else if (stat === 'APG') {    // Action Point Gain
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
         } else if (nwbuild.current.classCode === 'GF_IV') {
             if (stat === 'Dam') {           // Damage
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'ReI') {    // Resistance Ignored
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'CAD') {    // Combat Advantage Damage
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'HP') {     // Hit Points
-                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+                return ((filterFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
             } else if (stat === 'DTR') {    // DoT Resist
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'AER') {    // AoE Resist
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'Dflct') {  // Deflect Bonus
-                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+                return ((filterFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
             } else if (stat === 'CtB') {    // Control Bonus
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CtR') {    // Control Resist
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'GuM') {    // Guard Meter
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
-                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.int) - 10) / 100;
             } else if (stat === 'APG') {    // Action Point Gain
-                return (parseFloat(nwbuild.current.abilities.con) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.con) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
         } else if (nwbuild.current.classCode === 'GWF_S') {
             if (stat === 'Dam') {           // Damage
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'Crt') {    // Critical%
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'ReI') {    // Resistance Ignored
-                return (parseFloat(nwbuild.current.abilities.con) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.con) - 10) / 100;
             } else if (stat === 'CAD') {    // Combat Advantage Damage
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'HP') {     // Hit Points
-                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+                return ((filterFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
             } else if (stat === 'DTR') {    // DoT Resist
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'AER') {    // AoE Resist
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'Dflct') {  // Deflect Bonus
-                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+                return ((filterFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
             } else if (stat === 'CtB') {    // Control Bonus
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CtR') {    // Control Resist
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'SRg') {    // Stamina Regen
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
-                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.int) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
         } else if (nwbuild.current.classCode === 'TR_I') {
             if (stat === 'Dam') {           // Damage
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'Crt') {    // Critical%
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'CAD') {    // Combat Advantage Damage
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             } else if (stat === 'HP') {     // Hit Points
-                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+                return ((filterFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
             } else if (stat === 'DTR') {    // DoT Resist
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'AER') {    // AoE Resist
-                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.dex) - 10) / 100;
             } else if (stat === 'Dflct') {  // Deflect Bonus
-                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+                return ((filterFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
             } else if (stat === 'CtB') {    // Control Bonus
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CtR') {    // Control Resist
-                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'SRg') {    // Stamina Regen
-                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
-                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.int) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
-                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+                return (filterFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
         } 
         return 0;
     };
     var getFeatBonus = function getFeatBonus() {
+        return 0;
+    };
+    var filterFloat = function filterFloatF(n) {
+        if(/^\-?([0-9]+(\.[0-9]+)?|Infinity)$/.test(n))
+            return Number(n);
         return 0;
     };
 } (window.nwbuild = window.nwbuild || {}));

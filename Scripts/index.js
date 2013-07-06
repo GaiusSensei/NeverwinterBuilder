@@ -16,17 +16,71 @@ head.js(
         // 
         nwbuild.dbLoad();
         nwbuild.clearCurrent();
-        clearSet();
         nwbuild.refresh(invalidate);
+        // Ability onChange
+        $("#txtStr").change(function(){
+            if (!$.isNumeric($("#txtStr").val())) {
+                $("#txtStr").val(10);
+            }
+            nwbuild.current.abilities.str = Number($("#txtStr").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#txtDex").change(function(){
+            if (!$.isNumeric($("#txtDex").val())) {
+                $("#txtDex").val(10);
+            }
+            nwbuild.current.abilities.dex = Number($("#txtDex").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#txtCon").change(function(){
+            if (!$.isNumeric($("#txtCon").val())) {
+                $("#txtCon").val(10);
+            }
+            nwbuild.current.abilities.con = Number($("#txtCon").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#txtInt").change(function(){
+            if (!$.isNumeric($("#txtInt").val())) {
+                $("#txtInt").val(10);
+            }
+            nwbuild.current.abilities.int = Number($("#txtInt").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#txtWis").change(function(){
+            if (!$.isNumeric($("#txtWis").val())) {
+                $("#txtWis").val(10);
+            }
+            nwbuild.current.abilities.wis = Number($("#txtWis").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#txtCha").change(function(){
+            if (!$.isNumeric($("#txtCha").val())) {
+                $("#txtCha").val(10);
+            }
+            nwbuild.current.abilities.cha = Number($("#txtCha").val());
+            nwbuild.refresh(invalidate);
+        });
+        $("#selClass").change(function(){
+            nwbuild.current.classCode = $("#selClass").val();
+            nwbuild.refresh(invalidate);
+        });
     }
 );
 
-var clearSet = function clearSetF(){
-    // Clear Set
+var save = function saveF() {
+    nwbuild.current.name = $("#txtName").val();
+    alert(nwbuild.saveCurrent());
+};
+
+var load = function loadF() {
+    alert(nwbuild.loadToCurrent($("#txtName").val()));
+    nwbuild.refresh(invalidate);    
 };
 
 var invalidate = function invalidateF() {
     // Reload UI
+    $("#txtName").val(nwbuild.current.name);
+    $("#selClass").val(nwbuild.current.classCode);
     $("#txtStr").val(nwbuild.current.abilities.str);
     $("#txtDex").val(nwbuild.current.abilities.dex);
     $("#txtCon").val(nwbuild.current.abilities.con);
