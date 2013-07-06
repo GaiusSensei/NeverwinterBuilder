@@ -5,10 +5,16 @@ https://github.com/GaiusSensei/NeverwinterBuilder
 */
 (function (nwbuild, undefined) {
     // Private Properties
-    var dbVersion = 0;
+    var dbVersion = 1;
     // Public Methods
     nwbuild.dbLoad = function dbLoadF() {
-        // Clear DB if dbVersion != ts.dbVersion
+        if (!$.totalStorage("dbVersion"))
+            $.totalStorage("dbVersion", dbVersion);
+        if ($.totalStorage("dbVersion") != dbVersion) {
+            // Clear totalStorage
+        }
+        // Parallel load ItemDB
+        head.js("Scripts/NWBuild/ItemDB/gf-t1.js");
     };
     nwbuild.dbGet = function dbGetF(id) {
         var e = {
@@ -16,9 +22,11 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             name:"Debug Item",
             type:"debug",
             rarity:"vrare",
-            desc:"Set: Debug",
-            tags:["Set: Debug", "OffenseSlot"],
+            reqClass:[],
+            desc:"",
+            tags:["Set: Debug", "Slot1:Offense"],
             ratings:{
+                maxhp:0,
                 power:0,
                 crits:0,
                 arpen:0,

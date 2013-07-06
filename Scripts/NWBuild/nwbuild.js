@@ -7,6 +7,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
     // Public Properties
     nwbuild.ver = "1.0.0";
     nwbuild.current = {};
+    nwbuild.currentStats = {};
     // Public Methods
     nwbuild.saveCurrent = function saveCurrentF() {
         if (trim(nwbuild.current.name) === '') {
@@ -41,19 +42,22 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             abilities: {
                 str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10
             }, equipment: {
-                helm: { id: "0", text: "Test Helm", desc: "Set: Test" },
-                chest: { id: "0", text: "Test Chest", desc: "Set: Test" },
-                arms: { id: "0", text: "Test Arms", desc: "Set: Test" },
-                boots: { id: "0", text: "Test Boots", desc: "Set: Test" },
-                main: { id: "0", text: "Test Main Hand", desc: "Set: Test" },
-                off: { id: "0", text: "Test Off Hand", desc: "Set: Test" },
-                neck: { id: "0", text: "Test Neck", desc: "Set: Test" },
-                waist: { id: "0", text: "Test Waist", desc: "Set: Test" },
-                ring1: { id: "0", text: "Test Ring", desc: "Set: Test" },
-                ring2: { id: "0", text: "Test Ring", desc: "Set: Test" },
-                shirt: { id: "0", text: "Test Shirt", desc: "Set: Test" },
-                trousers: { id: "0", text: "Test Trousers", desc: "Set: Test" }
-            }, ratings: {
+                helm: { id: "0", s1: "0", s2: "0", s3: "0" },
+                chest: { id: "0", s1: "0", s2: "0", s3: "0" },
+                arms: { id: "0", s1: "0", s2: "0", s3: "0" },
+                boots: { id: "0", s1: "0", s2: "0", s3: "0" },
+                main: { id: "0", s1: "0", s2: "0", s3: "0" },
+                off: { id: "0", s1: "0", s2: "0", s3: "0" },
+                neck: { id: "0", s1: "0", s2: "0", s3: "0" },
+                waist: { id: "0", s1: "0", s2: "0", s3: "0" },
+                ring1: { id: "0", s1: "0", s2: "0", s3: "0" },
+                ring2: { id: "0", s1: "0", s2: "0", s3: "0" },
+                shirt: { id: "0", s1: "0", s2: "0", s3: "0" },
+                trousers: { id: "0", s1: "0", s2: "0", s3: "0" }
+            }
+        };
+        nwbuild.currentStats = {
+            ratings: {
                 power: 0,
                 crits: 0,
                 arpen: 0,
@@ -93,7 +97,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             shirt = nwbuild.dbGet(nwbuild.current.equipment.shirt.id),
             trousers = nwbuild.dbGet(nwbuild.current.equipment.trousers.id);
         // Recalculate Power
-        nwbuild.current.ratings.power = (
+        nwbuild.currentStats.ratings.power = (
             parseInt(helm.ratings.power, 10) +
             parseInt(chest.ratings.power, 10) +
             parseInt(arms.ratings.power, 10) +
@@ -107,7 +111,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.power, 10) +
             parseInt(trousers.ratings.power, 10));
         // Recalculate Crtitical Strike
-        nwbuild.current.ratings.crits = (
+        nwbuild.currentStats.ratings.crits = (
             parseInt(helm.ratings.crits, 10) +
             parseInt(chest.ratings.crits, 10) +
             parseInt(arms.ratings.crits, 10) +
@@ -121,7 +125,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.crits, 10) +
             parseInt(trousers.ratings.crits, 10));
         // Recalculate Armor Penetration
-        nwbuild.current.ratings.arpen = (
+        nwbuild.currentStats.ratings.arpen = (
             parseInt(helm.ratings.arpen, 10) +
             parseInt(chest.ratings.arpen, 10) +
             parseInt(arms.ratings.arpen, 10) +
@@ -135,7 +139,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.arpen, 10) +
             parseInt(trousers.ratings.arpen, 10));
         // Recalculate Recovery
-        nwbuild.current.ratings.recov = (
+        nwbuild.currentStats.ratings.recov = (
             parseInt(helm.ratings.recov, 10) +
             parseInt(chest.ratings.recov, 10) +
             parseInt(arms.ratings.recov, 10) +
@@ -149,7 +153,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.recov, 10) +
             parseInt(trousers.ratings.recov, 10));
         // Recalculate Defense
-        nwbuild.current.ratings.dfnse = (
+        nwbuild.currentStats.ratings.dfnse = (
             parseInt(helm.ratings.dfnse, 10) +
             parseInt(chest.ratings.dfnse, 10) +
             parseInt(arms.ratings.dfnse, 10) +
@@ -163,7 +167,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.dfnse, 10) +
             parseInt(trousers.ratings.dfnse, 10));
         // Recalculate Deflect
-        nwbuild.current.ratings.dflct = (
+        nwbuild.currentStats.ratings.dflct = (
             parseInt(helm.ratings.dflct, 10) +
             parseInt(chest.ratings.dflct, 10) +
             parseInt(arms.ratings.dflct, 10) +
@@ -177,7 +181,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.dflct, 10) +
             parseInt(trousers.ratings.dflct, 10));
         // Recalculate Regeneration
-        nwbuild.current.ratings.regen = (
+        nwbuild.currentStats.ratings.regen = (
             parseInt(helm.ratings.regen, 10) +
             parseInt(chest.ratings.regen, 10) +
             parseInt(arms.ratings.regen, 10) +
@@ -191,7 +195,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.regen, 10) +
             parseInt(trousers.ratings.regen, 10));
         // Recalculate Life Steal
-        nwbuild.current.ratings.lfstl = (
+        nwbuild.currentStats.ratings.lfstl = (
             parseInt(helm.ratings.lfstl, 10) +
             parseInt(chest.ratings.lfstl, 10) +
             parseInt(arms.ratings.lfstl, 10) +
@@ -205,7 +209,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.lfstl, 10) +
             parseInt(trousers.ratings.lfstl, 10));
         // Recalculate Movement
-        nwbuild.current.ratings.movem = (
+        nwbuild.currentStats.ratings.movem = (
             parseInt(helm.ratings.movem, 10) +
             parseInt(chest.ratings.movem, 10) +
             parseInt(arms.ratings.movem, 10) +
@@ -219,7 +223,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             parseInt(shirt.ratings.movem, 10) +
             parseInt(trousers.ratings.movem, 10));
         // Recalculate Armor Class
-        nwbuild.current.stats.ArC = (10 +
+        nwbuild.currentStats.stats.ArC = (10 +
             parseInt(helm.ratings.ArCls, 10) +
             parseInt(chest.ratings.ArCls, 10) +
             parseInt(arms.ratings.ArCls, 10) +
@@ -238,61 +242,61 @@ https://github.com/GaiusSensei/NeverwinterBuilder
 
         // Recalculate +Damage
         // Power*0.04        
-        nwbuild.current.stats.Dam = (filterFloat(nwbuild.current.ratings.power) * 0.04).toFixed(0);
+        nwbuild.currentStats.stats.Dam = (filterFloat(nwbuild.currentStats.ratings.power) * 0.04).toFixed(0);
         // Recalculate Critical%
         // 0.05+StatBonus+FeatBonus+0.288*CriticalStike^1.2/(LevelConstant+CriticalStrike^1.2)
         // where the level constant for level 60 is between 10185 and 10187
-        nwbuild.current.stats.Crt = 0.05 + getStatBonus('Crt') + getFeatBonus() +
-            (0.288 * Math.pow(filterFloat(nwbuild.current.ratings.crits), 1.2) /
-            (10185 + Math.pow(filterFloat(nwbuild.current.ratings.crits), 1.2)));
+        nwbuild.currentStats.stats.Crt = 0.05 + getStatBonus('Crt') + getFeatBonus() +
+            (0.288 * Math.pow(filterFloat(nwbuild.currentStats.ratings.crits), 1.2) /
+            (10185 + Math.pow(filterFloat(nwbuild.currentStats.ratings.crits), 1.2)));
         // Recalculate Armor Pen
         // 35.72*ArmorPenetration^1.88/(LevelConstant+ArmorPenetration^1.88)*(1+FeatBonus)
         // where the level constant for level 60 is between 1225377 and 1225660
-        nwbuild.current.stats.ArP =
-            (35.72 * Math.pow(filterFloat(nwbuild.current.ratings.arpen), 1.88)) /
-            (1225377 + Math.pow(filterFloat(nwbuild.current.ratings.arpen), 1.88));
+        nwbuild.currentStats.stats.ArP =
+            (35.72 * Math.pow(filterFloat(nwbuild.currentStats.ratings.arpen), 1.88)) /
+            (1225377 + Math.pow(filterFloat(nwbuild.currentStats.ratings.arpen), 1.88));
         // Recalculate Cooldown Divisor
         // (1+StatBonus+FeatBonus+0.36*Recovery^1.5/(LevelConstant+Recovery^1.5))
         // where the level constant for level 60 is between 102309 and 102311
-        nwbuild.current.stats.CDD = 1 + getStatBonus('RSp') + getFeatBonus() +
-            (0.36 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5)) /
-            (102309 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5));
+        nwbuild.currentStats.stats.CDD = 1 + getStatBonus('RSp') + getFeatBonus() +
+            (0.36 * Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.5)) /
+            (102309 + Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.5));
         // Recalculate Action Point Gain
         // (1+StatBonus+FeatBonus+0.36*Recovery^1.5/(LevelConstant+Recovery^1.5))
         // where the level constant for level 60 is between 102309 and 102311
-        nwbuild.current.stats.APG = 1 + getStatBonus('APG') + getFeatBonus() +
-            (0.36 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5)) /
-            (102309 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.5));
+        nwbuild.currentStats.stats.APG = 1 + getStatBonus('APG') + getFeatBonus() +
+            (0.36 * Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.5)) /
+            (102309 + Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.5));
         // Recalculate Damage Mitigated
         // (0.005*(ArmorClass-10)+0.4999*Defense/(LevelConstant+Defense)*(1+FeatBonus))+AbilityBonus
         // where the level constant for level 60 is 1643.6
-        nwbuild.current.stats.DmM = 0.005 * (parseInt(nwbuild.current.stats.ArC, 10) - 10) +
-            (0.4999 * filterFloat(nwbuild.current.ratings.dfnse)) /
-            (1643.6 + filterFloat(nwbuild.current.ratings.dfnse)) * (1 + getFeatBonus()) + getStatBonus('Dfnse');
+        nwbuild.currentStats.stats.DmM = 0.005 * (parseInt(nwbuild.currentStats.stats.ArC, 10) - 10) +
+            (0.4999 * filterFloat(nwbuild.currentStats.ratings.dfnse)) /
+            (1643.6 + filterFloat(nwbuild.currentStats.ratings.dfnse)) * (1 + getFeatBonus()) + getStatBonus('Dfnse');
         // Recalculate Deflect %
         // StatBonus+0.308*Deflect^1.4/(LevelConstant+Deflect^1.4)
         // where the level constant for level 60 is between 41957 and 41977
-        nwbuild.current.stats.Dfl = getStatBonus('Dflct') +
-            (0.308 * Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.4)) /
-            (41957 + Math.pow(filterFloat(nwbuild.current.ratings.recov), 1.4));
+        nwbuild.currentStats.stats.Dfl = getStatBonus('Dflct') +
+            (0.308 * Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.4)) /
+            (41957 + Math.pow(filterFloat(nwbuild.currentStats.ratings.recov), 1.4));
         // Recalculate Regen/3secs.
         // 0.2077*Regeneration^1.3/(LevelConstant+Regeneration^1.3)
         // where the level constant for level 60 is 12938
-        nwbuild.current.stats.HpS = 
-            (0.2077 * Math.pow(filterFloat(nwbuild.current.ratings.regen), 1.3)) /
-            (12938 + Math.pow(filterFloat(nwbuild.current.ratings.regen), 1.3));
+        nwbuild.currentStats.stats.HpS = 
+            (0.2077 * Math.pow(filterFloat(nwbuild.currentStats.ratings.regen), 1.3)) /
+            (12938 + Math.pow(filterFloat(nwbuild.currentStats.ratings.regen), 1.3));
         // Recalculate Life Steal/Damage.
         // 0.205*LifeSteal^1.3/(LevelConstant+LifeSteal^1.3)
         // where the level constant for level 60 is between 12710 and 12713
-        nwbuild.current.stats.HpD = 
-            (0.205 * Math.pow(filterFloat(nwbuild.current.ratings.lfstl), 1.3)) /
-            (12710 + Math.pow(filterFloat(nwbuild.current.ratings.lfstl), 1.3));
+        nwbuild.currentStats.stats.HpD = 
+            (0.205 * Math.pow(filterFloat(nwbuild.currentStats.ratings.lfstl), 1.3)) /
+            (12710 + Math.pow(filterFloat(nwbuild.currentStats.ratings.lfstl), 1.3));
         // Recalculate Run Speed %.
         // 1 + 0.31*Movement^1.4/(LevelConstant+Movement^1.4)
         // where the level constant for level 60 is between 42286 and 42340
-        nwbuild.current.stats.Run = 1 +
-            (0.31 * Math.pow(filterFloat(nwbuild.current.ratings.movem), 1.4)) /
-            (42286 + Math.pow(filterFloat(nwbuild.current.ratings.movem), 1.4));
+        nwbuild.currentStats.stats.Run = 1 +
+            (0.31 * Math.pow(filterFloat(nwbuild.currentStats.ratings.movem), 1.4)) /
+            (42286 + Math.pow(filterFloat(nwbuild.currentStats.ratings.movem), 1.4));
         // Done
         callback();
     };
@@ -451,6 +455,19 @@ https://github.com/GaiusSensei/NeverwinterBuilder
         if(/^\-?([0-9]+(\.[0-9]+)?|Infinity)$/.test(n))
             return Number(n);
         return 0;
+    };
+    var hexToBase64 = function hexToBase64F(str) {
+        return btoa(String.fromCharCode.apply(null,
+            str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
+        );
+    };    
+    var base64ToHex = function base64ToHexF(str) {
+        for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
+            var tmp = bin.charCodeAt(i).toString(16);
+            if (tmp.length === 1) tmp = "0" + tmp;
+            hex[hex.length] = tmp;
+        }
+        return hex.join("");
     };
 } (window.nwbuild = window.nwbuild || {}));
 
