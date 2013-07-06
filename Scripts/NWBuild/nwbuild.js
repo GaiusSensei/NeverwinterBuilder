@@ -298,13 +298,124 @@ https://github.com/GaiusSensei/NeverwinterBuilder
                 return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
             } else if (stat === 'RSp') {    // Recharge Speed
                 return (((parseFloat(nwbuild.current.abilities.int) - 10) / 100) +
-                        ((parseFloat(nwbuild.current.abilities.int) - 10) / 100));
+                        ((parseFloat(nwbuild.current.abilities.wis) - 10) / 100));
             } else if (stat === 'APG') {    // Action Point Gain
                 return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
             } else if (stat === 'CSB') {    // Companion Stat Bonus
                 return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
             }
-        }
+        } else if (nwbuild.current.classCode === 'DC_DO') {
+            if (stat === 'Dam') {           // Damage
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'Hea') {    // Healing
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'Crt') {    // Critical%
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'CAD') {    // Combat Advantage Damage
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            } else if (stat === 'HP') {     // Hit Points
+                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+            } else if (stat === 'DTR') {    // DoT Resist
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'AER') {    // AoE Resist
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'Dflct') {  // Deflect Bonus
+                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+            } else if (stat === 'CtB') {    // Control Bonus
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'CtR') {    // Control Resist
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'RSp') {    // Recharge Speed
+                return (((parseFloat(nwbuild.current.abilities.int) - 10) / 100) +
+                        ((parseFloat(nwbuild.current.abilities.cha) - 10) / 100));
+            } else if (stat === 'APG') {    // Action Point Gain
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            } else if (stat === 'CSB') {    // Companion Stat Bonus
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            }
+        } else if (nwbuild.current.classCode === 'GF_IV') {
+            if (stat === 'Dam') {           // Damage
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'ReI') {    // Resistance Ignored
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'CAD') {    // Combat Advantage Damage
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            } else if (stat === 'HP') {     // Hit Points
+                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+            } else if (stat === 'DTR') {    // DoT Resist
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'AER') {    // AoE Resist
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'Dflct') {  // Deflect Bonus
+                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+            } else if (stat === 'CtB') {    // Control Bonus
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'CtR') {    // Control Resist
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'GuM') {    // Guard Meter
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'RSp') {    // Recharge Speed
+                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+            } else if (stat === 'APG') {    // Action Point Gain
+                return (parseFloat(nwbuild.current.abilities.con) - 10) / 100;
+            } else if (stat === 'CSB') {    // Companion Stat Bonus
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            }
+        } else if (nwbuild.current.classCode === 'GWF_S') {
+            if (stat === 'Dam') {           // Damage
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'Crt') {    // Critical%
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'ReI') {    // Resistance Ignored
+                return (parseFloat(nwbuild.current.abilities.con) - 10) / 100;
+            } else if (stat === 'CAD') {    // Combat Advantage Damage
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            } else if (stat === 'HP') {     // Hit Points
+                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+            } else if (stat === 'DTR') {    // DoT Resist
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'AER') {    // AoE Resist
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'Dflct') {  // Deflect Bonus
+                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+            } else if (stat === 'CtB') {    // Control Bonus
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'CtR') {    // Control Resist
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'SRg') {    // Stamina Regen
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'RSp') {    // Recharge Speed
+                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+            } else if (stat === 'CSB') {    // Companion Stat Bonus
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            }
+        } else if (nwbuild.current.classCode === 'TR_I') {
+            if (stat === 'Dam') {           // Damage
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'Crt') {    // Critical%
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'CAD') {    // Combat Advantage Damage
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            } else if (stat === 'HP') {     // Hit Points
+                return ((parseFloat(nwbuild.current.abilities.con) - 10) / 100) * 2;
+            } else if (stat === 'DTR') {    // DoT Resist
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'AER') {    // AoE Resist
+                return (parseFloat(nwbuild.current.abilities.dex) - 10) / 100;
+            } else if (stat === 'Dflct') {  // Deflect Bonus
+                return ((parseFloat(nwbuild.current.abilities.dex) - 10) / 100) / 2;
+            } else if (stat === 'CtB') {    // Control Bonus
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'CtR') {    // Control Resist
+                return (parseFloat(nwbuild.current.abilities.wis) - 10) / 100;
+            } else if (stat === 'SRg') {    // Stamina Regen
+                return (parseFloat(nwbuild.current.abilities.str) - 10) / 100;
+            } else if (stat === 'RSp') {    // Recharge Speed
+                return (parseFloat(nwbuild.current.abilities.int) - 10) / 100;
+            } else if (stat === 'CSB') {    // Companion Stat Bonus
+                return (parseFloat(nwbuild.current.abilities.cha) - 10) / 100;
+            }
+        } 
         return 0;
     };
     var getFeatBonus = function getFeatBonus() {
