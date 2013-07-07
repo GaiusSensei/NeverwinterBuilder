@@ -14,7 +14,9 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             // Clear totalStorage
         }
         // Parallel load ItemDB
-        head.js("Scripts/NWBuild/ItemDB/gf-t1.js");
+        head.js("Scripts/NWBuild/ItemDB/gf-t1.js",
+            "Scripts/NWBuild/ItemDB/gf-t2.js",
+            "Scripts/NWBuild/ItemDB/gf-cw.js");
     };
     nwbuild.dbGet = function dbGetF(id) {
         var e = {

@@ -4,6 +4,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
 (c) 2013 by gaiussensei@gmail.com. All rights reserved.
 */
 (function (nwbuild, undefined) {
+    // Guardian Fighter - Tier 1 Armor Sets
     if(!$.totalStorage("db:DAE6D852B82046999AEDCA1763769F57"))
         $.totalStorage("db:DAE6D852B82046999AEDCA1763769F57", {
             id:"DAE6D852B82046999AEDCA1763769F57",
