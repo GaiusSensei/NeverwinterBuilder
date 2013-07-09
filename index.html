@@ -6,6 +6,7 @@
         <title>Neverwinter Character Builder</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
         <link rel="Stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+        <link rel="Stylesheet" type="text/css" href="Content/jquery.dataTables.css" />
         <link rel="Stylesheet" type="text/css" href="Content/site.css" />
         <script type="text/javascript" src="Scripts/HeadJs/head.min.js"></script>
     </head>
@@ -33,7 +34,7 @@
                             <li><a href="#" onclick="save();">Save Character</a></li>
                             <li><a href="#" onclick="load();">Load Character</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Clear Current Set</a></li>
+                            <li><a href="#" onclick="clearForm();">Clear Current Set</a></li>
                         </ul>
                       </div>
                       <input class="input-medium" id="txtName" type="text" placeholder="Character Name"/>
@@ -200,8 +201,8 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Helm: </h5>
-                            <span class="eqVeryRare" id="txtHelm">Test Helm</span>
-                            <a href="#" class="pull-right">Change</a>
+                            <span class="vrare" id="txtHelm">Test Helm</span>
+                            <a href="#" class="pull-right" onclick="loadEquip('head');">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtHelmDesc">Set: Test Armor, Power+100, 
                                 CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
@@ -210,8 +211,8 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Chest: </h5>
-                            <span class="eqVeryRare" id="txtChest">Test Chest</span>
-                            <a href="#" class="pull-right">Change</a>
+                            <span class="vrare" id="txtChest">Test Chest</span>
+                            <a href="#" class="pull-right" onclick="loadEquip('armor');">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtChestDesc">Set: Test Armor, Power+100, 
                                 CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
@@ -222,8 +223,8 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Arms: </h5>
-                            <span class="eqVeryRare" id="txtArms">Test Arms</span>
-                            <a href="#" class="pull-right">Change</a>
+                            <span class="vrare" id="txtArms">Test Arms</span>
+                            <a href="#" class="pull-right" onclick="loadEquip('arms');">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtArmsDesc">Set: Test Armor, Power+100, 
                                 CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
@@ -232,8 +233,8 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Boots: </h5>
-                            <span class="eqVeryRare" id="txtBoots">Test Boots</span>
-                            <a href="#" class="pull-right">Change</a>
+                            <span class="vrare" id="txtBoots">Test Boots</span>
+                            <a href="#" class="pull-right" onclick="loadEquip('feet');">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtBootsDesc">Set: Test Armor, Power+100, 
                                 CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
@@ -244,7 +245,7 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Main Hand: </h5>
-                            <span class="eqVeryRare" id="txtMain">Test Main Hand</span>
+                            <span class="vrare" id="txtMain">Test Main Hand</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtMainDesc">Set: Test Weapon, 
@@ -255,10 +256,10 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Off Hand: </h5>
-                            <span class="eqVeryRare" id="txtHelm">Test Off Hand</span>
+                            <span class="vrare" id="txtOff">Test Off Hand</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
-                            <p class="equipmentDesc" id="txtHelmDesc">Set: Test Weapon,
+                            <p class="equipmentDesc" id="txtOffDesc">Set: Test Weapon,
                                 MinDm:100, MaxDm:100, Power+100, CritS+100, 
                                 Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
                                 Regen+100, LfStl+100, Movem+100, ArCls+10
@@ -268,7 +269,7 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Neck: </h5>
-                            <span class="eqRare" id="txtNeck">Test Neck</span>
+                            <span class="rare" id="txtNeck">Test Neck</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtNeckDesc">Power+100, 
@@ -278,7 +279,7 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Waist: </h5>
-                            <span class="eqRare" id="txtWaist">Test Waist</span>
+                            <span class="rare" id="txtWaist">Test Waist</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtWaistDesc">Power+100, 
@@ -290,7 +291,7 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Ring1: </h5>
-                            <span class="eqRare" id="txtRing1">Test Ring</span>
+                            <span class="rare" id="txtRing1">Test Ring</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtRing1Desc">Power+100, 
@@ -300,7 +301,7 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Ring2: </h5>
-                            <span class="eqRare" id="txtRing2">Test Ring</span>
+                            <span class="rare" id="txtRing2">Test Ring</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtRing2Desc">Power+100, 
@@ -312,7 +313,7 @@
                     <div class="row-fluid">
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Shirt: </h5>
-                            <span class="eqUncommon" id="txtShirt">Test Shirt</span>
+                            <span class="uncommon" id="txtShirt">Test Shirt</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtShirtDesc">Power+100, 
@@ -322,7 +323,7 @@
                         </div>
                         <div class="span5 equipment">
                             <h5 style="margin:0px; display:inline;">Trousers: </h5>
-                            <span class="eqCommon" id="txtTrousers">Test Trousers</span>
+                            <span class="common" id="txtTrousers">Test Trousers</span>
                             <a href="#" class="pull-right">Change</a>
                             <hr style="padding:0px;margin:0px;"/>
                             <p class="equipmentDesc" id="txtTrousersDesc">Power+100, 
@@ -345,10 +346,44 @@
                 </p>
             </div>
         </footer>
-    </div>
-    
+        <!-- Dialog Boxes -->
+        <div class="modal hide fade" id="equipLoader">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Change Equipment: <span id="txtEqType"></span></h3>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="tblEquipLoader">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="equipment">
+                    <strong>Current: </strong><span class="eqUncommon" id="txtEqName">Test Shirt</span>
+                    <hr style="padding:0px;margin:0px;"/>
+                    <p class="equipmentDesc" id="txtEqDesc">Power+100, 
+                        CritS+100, Recov+100, ArPen+100, Dfnse+100, Dflct+100, 
+                        Regen+100, LfStl+100, Movem+100
+                    </p>
+                </div>
+                <strong>Selected: <span id="txtSelected">...</span></strong>
+                <div class="row-fluid" id="comparison">
+                    <ul id="lstCompare" style="list-style: none; display: inline-block;">
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn" data-dismiss="modal" aria-hidden="true" value="Close" />
+                <a href="#" class="btn">Unequip Current</a>
+                <a href="#" class="btn btn-primary">Equip Selected</a>
+            </div>
+        </div>
+    </div>  
     <!-- Issue Tracker -->
-    <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:Segoe UI, sans-serif;text-align:center;font-weight:bold;padding:0px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#600;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/GaiusSensei/NeverwinterBuilder/issues">Issues? File it at Github!</a></span>
+    <span id="github"><a href="https://github.com/GaiusSensei/NeverwinterBuilder/issues">Issues? File it at Github!</a></span>
     <!-- Scripts -->
     <script type="text/javascript" src="Scripts/index.js"></script>
     </body>

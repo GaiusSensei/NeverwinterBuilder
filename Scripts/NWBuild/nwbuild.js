@@ -10,19 +10,19 @@ https://github.com/GaiusSensei/NeverwinterBuilder
     nwbuild.currentStats = {};
     // Public Methods
     nwbuild.saveCurrent = function saveCurrentF() {
-        if (trim(nwbuild.current.name) === '') {
+        if ($.trim(nwbuild.current.name) === '') {
             return "Character Name required.";
         } else {
             $.totalStorage("CharacterSet:" + 
-                trim(nwbuild.current.name).toLowerCase(), nwbuild.current);
+                $.trim(nwbuild.current.name).toLowerCase(), nwbuild.current);
             return "Successfully saved.";
         }
     };
     nwbuild.loadToCurrent = function loadToCurrentF(name) {
-        if (trim(name) === '') {
+        if ($.trim(name) === '') {
             return "Character Name required.";
         } else {
-            var validName = trim(name).toLowerCase(),
+            var validName = $.trim(name).toLowerCase(),
                 key = "CharacterSet:" + validName;
             try {
                 var temp = $.totalStorage(key);
@@ -33,7 +33,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
                 return "Character not found.";
             }
             return "Character not found.";
-        }        
+        }
     };
     nwbuild.clearCurrent = function clearCurrentF() {
         nwbuild.current = {
@@ -301,9 +301,6 @@ https://github.com/GaiusSensei/NeverwinterBuilder
         callback();
     };
     // Private Methods
-    var trim = function trimF(s) {
-        return s.replace(/^\s+|\s+$/g, '');
-    };
     var getStatBonus = function getStatBonusF(stat) {
         if (nwbuild.current.classCode === 'CW_SM') {
             if (stat === 'Dam') {           // Damage
