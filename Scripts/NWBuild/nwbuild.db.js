@@ -24,7 +24,7 @@ https://github.com/GaiusSensei/NeverwinterBuilder
             id: "0",
             name: "Unequipped",
             type: "debug",
-            rarity: "vrare",
+            rarity: "common",
             reqClass: [],
             desc: "",
             tags: ["Set: Debug"],
@@ -127,6 +127,9 @@ https://github.com/GaiusSensei/NeverwinterBuilder
         }
         if (item.ratings.recov !== 0) {
             r += "Recovery+" + item.ratings.recov + ", ";
+        }
+        if (item.ratings.dfnse !== 0) {
+            r += "Defense+" + item.ratings.dfnse + ", ";
         }
         if (item.ratings.dflct !== 0) {
             r += "Deflect+" + item.ratings.dflct + ", ";
